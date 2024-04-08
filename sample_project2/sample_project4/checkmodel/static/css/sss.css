@@ -1,0 +1,54 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Set a background color for the entire page */
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    width: 100%;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Set a primary color for the button */
+    color: #ffffff; /* Set text color for the button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition */
+}
+
+.form-container button:hover {
+    background-color: #0056b3; /* Darken the button color on hover */
+}
+
+#success-message {
+    width:50px;
+    height:25px;
+    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    background-color: white;
+
+}

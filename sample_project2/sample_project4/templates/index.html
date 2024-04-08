@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Session No</th>
+                    <th>Output</th>
+                    <th>Attendance</th>
+                    <th>experiment completed</th>
+                    <th>experiment number</th>
+                    <th>next experiment</th>
+                    <th>lab diary</th>
+                    <th>viva mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if invalid_form %}
+                    {% for date,name in invalid_form %}
+                        <label>{{date}} for {{name}} already exist</label>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                {% if error_msg %}
+                    <label>{{error_msg}}</label>
+                {% endif %}
+                    {% for form in formset %}
+                        <tr>
+                            <td>{{ form.name }}</td>
+                            <td>{{ form.date }}</td>
+                            <td>{{ form.session_no }}</td>
+                            <td>{{ form.output }}</td>
+                            <td>{{ form.attendance }}</td>
+                            <td>{{ form.exp_comp }}</td>
+                            <td>{{ form.exp_no }}</td>
+                            <td>{{ form.next_exp }}</td>
+                            <td>{{ form.diary }}</td>
+                            <td>{{ form.viva_mark }}</td>
+
+                        </tr>
+                    {% endfor %}
+                   
+            </tbody>
+        </table>
+        <input type="submit" value="Submit" name="submit_button">
+        <button type="exit" name="exit_button">EXIT  </button>
+    </form>
+    
+    <script src="" async defer></script>
+</body>
+</html>

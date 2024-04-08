@@ -1,0 +1,32 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/sss.css' %}"/>
+</head>
+<body>
+    <div class="form-container">
+    <form method='POST'>
+        {% csrf_token %}
+        <label for="Diary_name">Marking details</label>
+        {{ frm.as_p }}
+        <button type='submit'>submit</button>
+    </form>
+    
+    </div>
+{% if messages %}
+    <script>
+        // Display success message for 5 seconds
+        setTimeout(function() {
+            var successMessage = "{% for message in messages %}{% if message.tags == 'success' %}{{ message }}{% endif %}{% endfor %}";
+            alert(successMessage);
+            // Redirect to querying page
+        }, 1000);  // 5000 milliseconds = 5 seconds
+
+    </script>
+{% endif %}
+</body>
+</html>
