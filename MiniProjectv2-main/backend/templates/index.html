@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Session No</th>
+                    <th>presented_hours</th>
+                    <th>total hours</th>
+                    <th>Output</th>
+                    <th>Attendance</th>
+                    <th>experiment number</th>
+                    <th>viva mark</th>
+                    <th class="hidden">lab diary</th>
+                    <th class="hidden">exp_comp</th>
+                    <th class="hidden">s_id</th>
+                    <th class="hidden">batch</th>
+                    <th class="hidden">c_code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if invalid_form %}
+                    {% for date,name in invalid_form %}
+                        <label>{{date}} for {{name}} already exist</label>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                {% if error_msg %}
+                    <label>{{error_msg}}</label>
+                {% endif %}
+                    {% for form in formset %}
+                        <tr>
+                            <td>{{ form.s_name }}</td>
+                            <td>{{ form.date }}</td>
+                            <td>{{ form.session_no }}</td>
+                            <td>{{ form.presented_hours }}</td>
+                            <td>{{ form.total_hours }}</td>
+                            <td>{{ form.output }}</td>
+                            <td>{{ form.attendance }}</td>
+                            <td>{{ form.exp_no }}</td>
+                            <td>{{ form.viva_mark }}</td>
+                            <td class="hidden">{{ form.course_diary }}</td>
+                            <td class="hidden">{{ form.exp_comp}} </td>
+                            <td class="hidden">{{ form.s_ktu_id }} </td>
+                            <td class="hidden">{{ form.batch}}</td>
+                            <td class="hidden">{{ form.c_code}}</td>
+                        </tr>
+                    {% endfor %}
+                   
+            </tbody>
+        </table>
+        <input type="submit" value="Submit" name="submit_button">
+        <button type="exit" name="exit_button">EXIT  </button>
+    </form>
+    
+    <script src="" async defer></script>
+</body>
+</html>
